@@ -11,6 +11,7 @@ use skim::{Skim, SkimOptionsBuilder};
 pub fn main() {
     let options = SkimOptionsBuilder::default()
         .multi(true)
+        .bind(vec!["ctrl-k:kill-line"])
         .build()
         .unwrap();
 
