@@ -17,8 +17,9 @@ jobs:
           git config user.name autotag
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           version=$(grep -E 'version = "[0-9.]+"' Cargo.toml | awk -F '"' '{print $2}')
-          if ! git tag | grep "$version"
+          tag_version="v${version}"
+          if ! git tag | grep "${tag_version}"
           then
-              git tag "$version"
+              git tag "${tag_version}"
               git push --tags
           fi
