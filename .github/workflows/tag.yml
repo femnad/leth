@@ -7,6 +7,8 @@ jobs:
     name: Tag version if tag untaken
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@master
       - name: Tag version
         run: |
           git config user.email autotag
