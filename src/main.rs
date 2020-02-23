@@ -9,7 +9,7 @@ use std::process::Command;
 use regex::Regex;
 use skim::{Skim, SkimOptionsBuilder};
 
-const URL_REGEX: &str = r"(http(?:s)://[a-zA-Z0-9_/?+&.=@-]+)";
+const URL_REGEX: &str = r"(http(?:s)://[a-zA-Z0-9_/?+&.=@%-]+)";
 
 pub fn main() {
     let options = SkimOptionsBuilder::default()

@@ -1,0 +1,20 @@
+
+name: Tag version
+
+jobs:
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tag version
+        run: |
+          git config user.email autotag
+          git config user.name autotag
+          git remote set-url origin https://x-access-token:${{ secrets.github_token }}/${GITHUB_REPOSITORY}.git
+          git checkout master
+          version=$(grep -E 'version = "[0-9.]+"' Cargo.toml | awk -F '"' '{print $2}')
+          if ! git tag | grep "$version"
+          then
+              git tag "$version"
+              git push --tags
+          fi
