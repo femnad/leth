@@ -4,7 +4,7 @@ name: Tag version
 
 jobs:
   build:
-    name: Upload Release Asset
+    name: Tag version if tag untaken
     runs-on: ubuntu-latest
     steps:
       - name: Tag version
