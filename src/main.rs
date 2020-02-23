@@ -9,6 +9,8 @@ use std::process::Command;
 use regex::Regex;
 use skim::{Skim, SkimOptionsBuilder};
 
+const URL_REGEX: &str = r"(http(?:s)://[a-zA-Z0-9_/?+&.=@-]+)";
+
 pub fn main() {
     let options = SkimOptionsBuilder::default()
         .multi(true)
@@ -16,7 +18,7 @@ pub fn main() {
         .build()
         .unwrap();
 
-    let re = Regex::new(r"(http(?:s)://[a-zA-Z0-9_/?+&.=-]+)").unwrap();
+    let re = Regex::new(URL_REGEX).unwrap();
     let mut buffer = String::new();
     io::stdin().read_to_string(&mut buffer).unwrap();
     let lines = buffer.split("\n");
