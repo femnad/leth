@@ -1,6 +1,6 @@
 [package]
 name = "leth"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["fcd <femnad@users.noreply.github.com>"]
 edition = "2018"
 
