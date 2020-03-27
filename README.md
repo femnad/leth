@@ -18,7 +18,7 @@ macro index,pager,attach,compose \cb "\
 "call leth to extract URLs out of a message"
 ```
 
-The above snippet nicket for the default global `muttrc` in a Ubuntu installation.
+The above snippet nicked from the default global `muttrc` in an Ubuntu installation.
 
 [urlview]: https://github.com/sigpipe/urlview
 [mutt]: http://www.mutt.org/
