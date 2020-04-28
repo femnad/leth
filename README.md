@@ -8,7 +8,7 @@ After enabling in mutt (see below) run by hitting the corresponding keybinding, 
 
 ## How to Enable in mutt
 
-Something like the following in your `muttrc` should do the trick, which binds to `<Ctrl>+b`, same url `urlview`:
+Something like the following in your `muttrc` should do the trick, which binds to `<Ctrl>+b`, same as `urlview`:
 
 ```
 macro index,pager,attach,compose \cb "\
