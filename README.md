@@ -1,6 +1,6 @@
 # leth
 
-A naive [urlview](urlview) replacement for opening multiple URLs with [mutt](mutt). Stands on the shoulders of [skim](skim).
+A naive [urlview] replacement for opening multiple URLs with [mutt]. Stands on the shoulders of [skim].
 
 ## How to Use
 
