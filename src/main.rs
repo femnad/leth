@@ -1,5 +1,6 @@
 extern crate regex;
 extern crate skim;
+extern crate structopt;
 
 use std::collections::HashMap;
 use std::io::Cursor;
@@ -8,10 +9,17 @@ use std::process::Command;
 
 use regex::Regex;
 use skim::{Skim, SkimOptionsBuilder};
+use structopt::StructOpt;
 
 const URL_REGEX: &str = r"(http(s)?://[a-zA-Z0-9_/?+&.=@%#;~-]+)";
 
+#[derive(Debug, StructOpt)]
+#[structopt(name = "leth", about = "URL extractor intended to be used within mutt")]
+struct Opt {}
+
 pub fn main() {
+    Opt::from_args();
+
     let options = SkimOptionsBuilder::default()
         .multi(true)
         .bind(vec!["ctrl-k:kill-line"])
@@ -37,13 +45,10 @@ pub fn main() {
         }
     }
 
-    let mut ordered_items: Vec<_> = matches.into_iter()
-        .collect();
+    let mut ordered_items: Vec<_> = matches.into_iter().collect();
     ordered_items.sort_by(|a, b| a.1.cmp(&b.1));
 
-    let item_list: Vec<_> = ordered_items.iter()
-        .map(|item|item.0)
-        .collect();
+    let item_list: Vec<_> = ordered_items.iter().map(|item| item.0).collect();
     let items = item_list.join("\n");
 
     let selected_items = Skim::run_with(&options, Some(Box::new(Cursor::new(items))))
