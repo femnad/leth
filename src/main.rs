@@ -11,7 +11,7 @@ use regex::Regex;
 use skim::{Skim, SkimOptionsBuilder};
 use structopt::StructOpt;
 
-const URL_REGEX: &str = r"(http(s)?://[a-zA-Z0-9_/?+&.=@%#;~-]+)";
+const URL_REGEX: &str = r"(http(s)?://[a-zA-Z0-9_/?+&.=@%#;~:-]+)";
 
 #[derive(Debug, StructOpt)]
 #[structopt(name = "leth", about = "URL extractor intended to be used within mutt")]
