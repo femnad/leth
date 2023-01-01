@@ -1,6 +1,6 @@
 [package]
 name = "leth"
-version = "0.3.0"
+version = "0.4.0"
 authors = ["fcd <femnad@users.noreply.github.com>"]
 edition = "2018"
 
@@ -8,5 +8,5 @@ edition = "2018"
 
 [dependencies]
 regex = "1"
-skim = "0.7.0"
+skim = "0.10.2"
 structopt = "0.3.26"
