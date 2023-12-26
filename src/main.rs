@@ -54,11 +54,12 @@ pub fn main() {
     let item_reader = SkimItemReader::default();
     let items = item_reader.of_bufread(Cursor::new(items));
 
-    let selected_items = Skim::run_with(&options, Some(items))
-        .map(|out| out.selected_items)
-        .unwrap_or_else(|| Vec::new());
+    let output = Skim::run_with(&options, Some(items)).unwrap();
+    if output.is_abort {
+        return;
+    }
 
-    for item in selected_items.iter() {
+    for item in output.selected_items.iter() {
         let url = item.clone();
         Command::new("firefox")
             .arg(url.output().as_ref())
