@@ -1,12 +1,12 @@
 [package]
 name = "leth"
-version = "0.6.1"
+version = "0.6.2"
 authors = ["fcd <femnad@users.noreply.github.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+clap = { version = "4.4.11", features = ["derive"] }
 regex = "1"
 skim = "0.10.4"
-structopt = "0.3.26"

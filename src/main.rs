@@ -1,25 +1,24 @@
 extern crate regex;
 extern crate skim;
-extern crate structopt;
 
 use std::collections::HashMap;
 use std::io::Cursor;
 use std::io::{self, Read};
 use std::process::{Command, Stdio};
 
+use clap::Parser;
 use regex::Regex;
 use skim::prelude::*;
-use structopt::StructOpt;
 
 const LINE_SPLITTER: char = '=';
 const URL_REGEX: &str = r"(http(s)?://[a-zA-Z0-9_/?+&.=@%#;~:-]+)";
 
-#[derive(Debug, StructOpt)]
-#[structopt(name = "leth", about = "URL extractor intended to be used within mutt")]
-struct Opt {}
+#[derive(Parser)]
+#[command(version, long_about = "URL extractor intended to be used within mutt")]
+struct Args {}
 
 pub fn main() {
-    Opt::from_args();
+    let _args = Args::parse();
 
     let options = SkimOptionsBuilder::default()
         .multi(true)
@@ -37,7 +36,7 @@ pub fn main() {
     let mut merged_lines: Vec<String> = Vec::new();
     for line in lines {
         if line.len() == 0 {
-            continue
+            continue;
         }
 
         if line.ends_with(LINE_SPLITTER) {
