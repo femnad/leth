@@ -61,7 +61,9 @@ pub fn main() {
     let mut matches: HashMap<String, u8> = HashMap::new();
     let mut match_index = 1;
     for line in merged_lines {
-        for capture in re.captures_iter(&line) {
+        let sanitized = line.replace("=3D", "=");
+
+        for capture in re.captures_iter(&sanitized) {
             let url_match = capture.get(1).unwrap().as_str();
             if matches.contains_key(url_match) {
                 continue;
