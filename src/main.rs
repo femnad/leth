@@ -8,7 +8,7 @@ use std::io::{self, Read};
 use std::process::Command;
 
 use regex::Regex;
-use skim::{Skim, SkimOptionsBuilder};
+use skim::prelude::*;
 use structopt::StructOpt;
 
 const URL_REGEX: &str = r"(http(s)?://[a-zA-Z0-9_/?+&.=@%#;~:-]+)";
@@ -51,14 +51,17 @@ pub fn main() {
     let item_list: Vec<_> = ordered_items.iter().map(|item| item.0).collect();
     let items = item_list.join("\n");
 
-    let selected_items = Skim::run_with(&options, Some(Box::new(Cursor::new(items))))
+    let item_reader = SkimItemReader::default();
+    let items = item_reader.of_bufread(Cursor::new(items));
+
+    let selected_items = Skim::run_with(&options, Some(items))
         .map(|out| out.selected_items)
         .unwrap_or_else(|| Vec::new());
 
     for item in selected_items.iter() {
         let url = item.clone();
         Command::new("firefox")
-            .arg(url.get_text())
+            .arg(url.output().as_ref())
             .output()
             .unwrap();
     }
