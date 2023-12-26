@@ -5,7 +5,7 @@ extern crate structopt;
 use std::collections::HashMap;
 use std::io::Cursor;
 use std::io::{self, Read};
-use std::process::Command;
+use std::process::{Command, Stdio};
 
 use regex::Regex;
 use skim::prelude::*;
@@ -62,7 +62,9 @@ pub fn main() {
         let url = item.clone();
         Command::new("firefox")
             .arg(url.output().as_ref())
-            .output()
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .spawn()
             .unwrap();
     }
 }
