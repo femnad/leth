@@ -11,15 +11,15 @@ After enabling in mutt (see below) run by hitting the corresponding keybinding, 
 Something like the following in your `muttrc` should do the trick, which binds to `<Ctrl>+b`, same as `urlview`:
 
 ```
-macro index,pager,attach,compose \cb "\
-<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode<Enter>\
-<pipe-message> leth<Enter>\
-<enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
-"call leth to extract URLs out of a message"
+macro index,pager \cb "<pipe-message> leth<Enter>" "call leth to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> leth<Enter>" "call leth to extract URLs out of a message"
 ```
 
-The above snippet nicked from the default global `muttrc` in an Ubuntu installation.
+## Better Alternatives
 
-[urlview]: https://github.com/sigpipe/urlview
+[urlscan] is overall a more capable URL selector.
+
 [mutt]: http://www.mutt.org/
+[urlscan]: https://github.com/firecat53/urlscan
+[urlview]: https://github.com/sigpipe/urlview
 [skim]: https://github.com/lotabout/skim
