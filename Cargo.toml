@@ -8,5 +8,5 @@ edition = "2018"
 
 [dependencies]
 regex = "1"
-skim = "0.10.2"
+skim = "0.10.4"
 structopt = "0.3.26"
